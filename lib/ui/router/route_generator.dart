@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/ui/router/route_list.dart';
 import 'package:recipe_app/ui/screens/dashboard/dashboard_screen.dart';
+import 'package:recipe_app/ui/screens/recipes/recipe_detail_screen.dart';
 import 'package:recipe_app/ui/screens/splash/splash_screen.dart';
 
 class RouteGenerator {
@@ -9,9 +10,20 @@ class RouteGenerator {
 
     switch (settings.name) {
       case routeSplash:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(
+          builder: (_) => const SplashScreen(),
+          settings: const RouteSettings(name: routeSplash),
+        );
       case routeDashboard:
-        return MaterialPageRoute(builder: (_) => const DashboardScreen());
+        return MaterialPageRoute(
+          builder: (_) => const DashboardScreen(),
+          settings: const RouteSettings(name: routeDashboard),
+        );
+      case routeRecipeDetail:
+        return MaterialPageRoute(
+          builder: (_) => const RecipeDetailScreen(),
+          settings: const RouteSettings(name: routeRecipeDetail),
+        );
 
       default:
       // return _errorRoute();

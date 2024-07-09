@@ -28,6 +28,19 @@ final lightTheme = ThemeData(
       selectedIconTheme: IconThemeData(color: primaryColor),
       unselectedIconTheme: IconThemeData(color: Colors.grey),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor),
+        borderRadius: defaultRadius,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey),
+        borderRadius: defaultRadius,
+      ),
+      labelStyle: const TextStyle(
+        color: Colors.grey,
+      ),
+    ),
     colorScheme: const ColorScheme.light()
         .copyWith(
           primary: primaryColor,

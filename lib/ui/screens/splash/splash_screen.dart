@@ -42,22 +42,15 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // align the logo a bit to the right for better centered look
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(width: setWidth(20)),
-                AnimatedOpacity(
-                  opacity: opacityLogo,
-                  duration: const Duration(milliseconds: 300),
-                  child: Image.asset(
-                    Assets.icons.chef.path,
-                    width: deviceWidth * 0.5,
-                    height: setHeight(400),
-                  ),
-                ),
-              ],
+            AnimatedOpacity(
+              opacity: opacityLogo,
+              duration: const Duration(milliseconds: 300),
+              child: Image.asset(
+                Assets.icons.chef.path,
+                width: deviceWidth * 0.5,
+                height: setHeight(400),
+              ),
             ),
-
             AnimatedOpacity(
               opacity: opacityText,
               duration: const Duration(milliseconds: 300),

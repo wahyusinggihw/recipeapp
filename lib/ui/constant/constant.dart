@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const String appName = 'Recipe App';
 
-const Color primaryColor = Color(0xFFFF4081);
+const Color primaryColor = Colors.orange;
 const Color secondaryColor = Color(0xFFFFFFC1);
 Color accentColor = Colors.orange[200]!;
 const Color blackColor = Color(0xFF000000);
@@ -83,3 +83,5 @@ TextStyle styleTitle = TextStyle(
 
 Widget verticalSpace(double height) => SizedBox(height: setHeight(height));
 Widget horizontalSpace(double width) => SizedBox(width: setWidth(width));
+
+BorderRadius defaultRadius = BorderRadius.circular(30);
