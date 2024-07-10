@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/ui/constant/constant.dart';
+import 'package:recipe_app/ui/router/route_list.dart';
+import 'package:recipe_app/ui/screens/recipes/recipe_search_screen.dart';
 import 'package:recipe_app/ui/widgets/recipe/recipe_grid.dart';
 
 class RecipesScreen extends StatelessWidget {
@@ -36,7 +38,11 @@ class RecipeScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: [RecipeSearch(), RecipeMenu(), RecipeHistory()],
+        children: [
+          RecipeSearch(),
+          RecipeMenu(),
+          RecipeHistory(),
+        ],
       ),
     );
   }
@@ -68,14 +74,31 @@ class RecipeSearch extends StatelessWidget {
             ),
           ),
           verticalSpace(20),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Search your favorite food',
-              prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-              border: OutlineInputBorder(
-                borderRadius: defaultRadius,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RecipeSearchScreen(),
+                ),
+              );
+            },
+            child: Hero(
+              tag: 'searchField',
+              child: Material(
+                child: IgnorePointer(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search your favorite food',
+                      prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
+                    ),
+                  ),
+                ),
               ),
-              suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
             ),
           ),
         ],
@@ -130,7 +153,9 @@ class RecipeHistory extends StatelessWidget {
           ),
           SizedBox(
             height: setHeight(325),
-            child: RecipeGrid(),
+            child: RecipeGrid(
+              makeHistory: true,
+            ),
           ),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/ui/constant/constant.dart';
-import 'package:recipe_app/ui/widgets/recipe_panel_details.dart';
+import 'package:recipe_app/ui/widgets/recipe/recipe_panel_details.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
@@ -15,6 +15,12 @@ class RecipeDetailScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: whiteColor),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite_border, color: whiteColor),
+            onPressed: () {},
+          ),
+        ],
         backgroundColor: Colors.transparent, // 1
         elevation: 0, // 2
       ),
@@ -44,7 +50,7 @@ class _RecipeBodyDetailScreenState extends State<RecipeBodyDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _panelHeightOpen = MediaQuery.of(context).size.height * .80;
+    _panelHeightOpen = MediaQuery.of(context).size.height * .90;
     double minHeight = MediaQuery.of(context).size.height / 2;
     return SlidingUpPanel(
       color: whiteColor,
@@ -53,7 +59,7 @@ class _RecipeBodyDetailScreenState extends State<RecipeBodyDetailScreen> {
       minHeight: minHeight,
       parallaxEnabled: true,
       parallaxOffset: .5,
-      body: RecipeImage(),
+      body: const RecipeImage(imageUrl: 'https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg'),
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       onPanelSlide: (double pos) => setState(() {
         _fabHeight = pos * (_panelHeightOpen - _panelHeightClosed) + _initFabHeight;
@@ -83,19 +89,19 @@ class _RecipeBodyDetailScreenState extends State<RecipeBodyDetailScreen> {
 }
 
 class RecipeImage extends StatelessWidget {
-  const RecipeImage({super.key});
+  final String imageUrl;
+  const RecipeImage({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: const Alignment(0, -1.2),
-      child: Positioned.fill(
+      child: ClipRRect(
         child: Image.network(
-          'https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg',
+          imageUrl,
           fit: BoxFit.cover,
         ),
       ),
     );
-    ;
   }
 }

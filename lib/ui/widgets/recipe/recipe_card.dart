@@ -6,14 +6,16 @@ class RecipeCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final VoidCallback onTap;
+  final bool makeHistory;
 
   const RecipeCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.subtitle,
     required this.onTap,
-  }) : super(key: key);
+    this.makeHistory = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class RecipeCard extends StatelessWidget {
                           title,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: setFontSize(50),
+                            fontSize: makeHistory ? setFontSize(40) : setFontSize(50),
                             fontWeight: FontWeight.bold,
                           ),
                         ),

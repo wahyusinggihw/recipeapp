@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/ui/router/route_list.dart';
 import 'package:recipe_app/ui/screens/dashboard/dashboard_screen.dart';
 import 'package:recipe_app/ui/screens/recipes/recipe_detail_screen.dart';
+import 'package:recipe_app/ui/screens/recipes/recipe_search_screen.dart';
 import 'package:recipe_app/ui/screens/splash/splash_screen.dart';
 
 class RouteGenerator {
@@ -23,6 +24,11 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const RecipeDetailScreen(),
           settings: const RouteSettings(name: routeRecipeDetail),
+        );
+      case routeSearchScreen:
+        return MaterialPageRoute(
+          builder: (_) => const RecipeSearchScreen(),
+          settings: const RouteSettings(name: routeSearchScreen),
         );
 
       default:

@@ -4,7 +4,8 @@ import 'package:recipe_app/ui/widgets/recipe/recipe_card.dart';
 
 class RecipeGrid extends StatelessWidget {
   // final List<FruitsModel> fruits;
-  const RecipeGrid({super.key});
+  final bool makeHistory;
+  const RecipeGrid({super.key, this.makeHistory = false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class RecipeGrid extends StatelessWidget {
         // FruitsModel fruit = fruits[index];
         return RecipeCard(
             // fruit: fruit,
+            makeHistory: makeHistory,
             title: 'Ayam Bakar',
             subtitle: 'Indonesian',
             imageUrl: 'https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg',
