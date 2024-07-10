@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipe_app/core/view_models/recipe/recipe_provider.dart';
 import 'package:recipe_app/ui/constant/constant.dart';
 import 'package:recipe_app/ui/router/route_list.dart';
 import 'package:recipe_app/ui/screens/recipes/recipe_search_screen.dart';
@@ -21,12 +23,15 @@ class RecipesScreen extends StatelessWidget {
           Padding(
               padding: EdgeInsets.symmetric(horizontal: setWidth(20)),
               child: IconButton(
-                icon: Icon(Icons.notifications_none),
+                icon: const Icon(Icons.notifications_none),
                 onPressed: () {},
               )),
         ],
       ),
-      body: const RecipeScreenBody(),
+      body: ChangeNotifierProvider(
+        create: (BuildContext context) => RecipeProvider(),
+        child: const RecipeScreenBody(),
+      ),
     );
   }
 }
@@ -124,10 +129,18 @@ class RecipeMenu extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(
-            height: setHeight(650),
-            child: RecipeGrid(),
-          ),
+          Consumer<RecipeProvider>(builder: (context, recipes, _) {
+            if (recipes.recipes.isEmpty) {
+              recipes.getRecipes();
+            }
+
+            return SizedBox(
+              height: setHeight(650),
+              child: RecipeGrid(
+                recipe: recipes.recipes,
+              ),
+            );
+          }),
         ],
       ),
     );
@@ -154,6 +167,7 @@ class RecipeHistory extends StatelessWidget {
           SizedBox(
             height: setHeight(325),
             child: RecipeGrid(
+              recipe: [],
               makeHistory: true,
             ),
           ),

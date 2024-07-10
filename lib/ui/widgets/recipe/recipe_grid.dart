@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/models/recipe.dart';
 import 'package:recipe_app/ui/router/route_list.dart';
 import 'package:recipe_app/ui/widgets/recipe/recipe_card.dart';
 
 class RecipeGrid extends StatelessWidget {
-  // final List<FruitsModel> fruits;
+  final List<Meal> recipe;
   final bool makeHistory;
-  const RecipeGrid({super.key, this.makeHistory = false});
+  const RecipeGrid({super.key, required this.recipe, this.makeHistory = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +18,18 @@ class RecipeGrid extends StatelessWidget {
         childAspectRatio: 1.1,
       ),
       scrollDirection: Axis.horizontal,
-      itemCount: 2,
+      itemCount: recipe.length,
       itemBuilder: (context, index) {
         // FruitsModel fruit = fruits[index];
+        Meal r = recipe.elementAt(index);
         return RecipeCard(
             // fruit: fruit,
             makeHistory: makeHistory,
-            title: 'Ayam Bakar',
-            subtitle: 'Indonesian',
-            imageUrl: 'https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg',
+            title: r.strMeal,
+            subtitle: r.strArea,
+            imageUrl: r.strMealThumb,
             onTap: () => Navigator.pushNamed(context, routeRecipeDetail));
       },
     );
-    ;
   }
 }
