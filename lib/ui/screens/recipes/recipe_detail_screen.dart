@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipe_app/core/models/recipe.dart';
+import 'package:recipe_app/core/view_models/recipe/recipe_provider.dart';
 import 'package:recipe_app/ui/constant/constant.dart';
 import 'package:recipe_app/ui/widgets/recipe/recipe_panel_details.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
-  const RecipeDetailScreen({super.key});
+  Meal recipe;
+  RecipeDetailScreen({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +28,17 @@ class RecipeDetailScreen extends StatelessWidget {
         backgroundColor: Colors.transparent, // 1
         elevation: 0, // 2
       ),
-      body: const RecipeBodyDetailScreen(),
+      body: ChangeNotifierProvider(
+        create: (BuildContext context) => RecipeProvider(),
+        child: RecipeBodyDetailScreen(recipe: recipe),
+      ),
     );
   }
 }
 
 class RecipeBodyDetailScreen extends StatefulWidget {
-  const RecipeBodyDetailScreen({super.key});
+  Meal recipe;
+  RecipeBodyDetailScreen({super.key, required this.recipe});
 
   @override
   State<RecipeBodyDetailScreen> createState() => _RecipeBodyDetailScreenState();
@@ -59,12 +67,12 @@ class _RecipeBodyDetailScreenState extends State<RecipeBodyDetailScreen> {
       minHeight: minHeight,
       parallaxEnabled: true,
       parallaxOffset: .5,
-      body: const RecipeImage(imageUrl: 'https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg'),
+      body: RecipeImage(imageUrl: widget.recipe.strMealThumb),
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       onPanelSlide: (double pos) => setState(() {
         _fabHeight = pos * (_panelHeightOpen - _panelHeightClosed) + _initFabHeight;
       }),
-      panelBuilder: (sc) => RecipePanelDetails(sc: sc),
+      panelBuilder: (sc) => RecipePanelDetails(sc: sc, recipe: widget.recipe),
     );
   }
 

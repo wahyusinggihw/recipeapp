@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'recipe.g.dart';
+part 'recipe.g.dart'; // Ensure this matches the file name
 
 @JsonSerializable(explicitToJson: true)
 class MealResponse {
@@ -171,4 +171,65 @@ class Meal {
   factory Meal.fromJson(Map<String, dynamic> json) => _$MealFromJson(json);
 
   Map<String, dynamic> toJson() => _$MealToJson(this);
+
+  List<Map<String, String>> getIngredientsWithMeasures() {
+    final ingredients = <String>[
+      strIngredient1,
+      strIngredient2,
+      strIngredient3,
+      strIngredient4,
+      strIngredient5,
+      strIngredient6,
+      strIngredient7,
+      strIngredient8,
+      strIngredient9,
+      strIngredient10,
+      strIngredient11,
+      strIngredient12,
+      strIngredient13,
+      strIngredient14,
+      strIngredient15,
+      strIngredient16,
+      strIngredient17,
+      strIngredient18,
+      strIngredient19,
+      strIngredient20
+    ];
+
+    final measures = <String>[
+      strMeasure1,
+      strMeasure2,
+      strMeasure3,
+      strMeasure4,
+      strMeasure5,
+      strMeasure6,
+      strMeasure7,
+      strMeasure8,
+      strMeasure9,
+      strMeasure10,
+      strMeasure11,
+      strMeasure12,
+      strMeasure13,
+      strMeasure14,
+      strMeasure15,
+      strMeasure16,
+      strMeasure17,
+      strMeasure18,
+      strMeasure19,
+      strMeasure20
+    ];
+
+    List<Map<String, String>> combined = [];
+    for (int i = 0; i < ingredients.length; i++) {
+      if (ingredients[i].isNotEmpty) {
+        combined.add({"ingredient": ingredients[i], "measure": measures[i]});
+      }
+    }
+
+    return combined;
+  }
+
+  int get ingredientCount {
+    return getIngredientsWithMeasures().length;
+  }
 }

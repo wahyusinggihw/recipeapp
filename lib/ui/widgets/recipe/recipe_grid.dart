@@ -28,7 +28,7 @@ class RecipeGrid extends StatelessWidget {
             title: r.strMeal,
             subtitle: r.strArea,
             imageUrl: r.strMealThumb,
-            onTap: () => Navigator.pushNamed(context, routeRecipeDetail));
+            onTap: () => Navigator.pushNamed(context, routeRecipeDetail, arguments: r));
       },
     );
   }
