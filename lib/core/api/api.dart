@@ -6,7 +6,7 @@ class Api {
 
   String getSingleRandomRecipe = '$_baseUrl/random.php';
   String getAllRecipe = '$_baseUrl/search.php?s=';
-  String getRecipeByName = '$_baseUrl/search.php?s=:name';
+  String getRecipeByName = '$_baseUrl/search.php';
   String getRecipeById = '$_baseUrl/lookup.php?i=:id';
   String getListCategories = '$_baseUrl/categories.php';
   String getByMainIngredient = '$_baseUrl/filter.php?i=:ingredient';

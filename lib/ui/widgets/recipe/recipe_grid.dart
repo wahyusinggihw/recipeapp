@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/core/models/recipe.dart';
 import 'package:recipe_app/ui/router/route_list.dart';
 import 'package:recipe_app/ui/widgets/recipe/recipe_card.dart';
-import 'package:recipe_app/ui/widgets/recipe/recipe_loading.dart';
+import 'package:recipe_app/ui/widgets/idle/recipe_loading.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class RecipeGrid extends StatelessWidget {

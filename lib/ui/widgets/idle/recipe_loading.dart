@@ -8,6 +8,7 @@ class RecipeLoading extends StatelessWidget {
   Widget build(context) {
     return RecipeCard(
       // placeholder
+      enableHero: false,
       title: 'Loading',
       subtitle: 'Loading',
       imageUrl: 'https://via.assets.so/img.jpg?w=400&h=150&tc=blue&bg=#cecece',

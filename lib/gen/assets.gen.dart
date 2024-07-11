@@ -15,8 +15,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/chef.png
   AssetGenImage get chef => const AssetGenImage('assets/icons/chef.png');
 
+  /// File path: assets/icons/plate.png
+  AssetGenImage get plate => const AssetGenImage('assets/icons/plate.png');
+
+  /// File path: assets/icons/search.png
+  AssetGenImage get search => const AssetGenImage('assets/icons/search.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [chef];
+  List<AssetGenImage> get values => [chef, plate, search];
 }
 
 class Assets {

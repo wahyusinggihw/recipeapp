@@ -19,7 +19,7 @@ class RecipeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: setHeight(30), horizontal: setWidth(30)),
+      padding: EdgeInsets.symmetric(vertical: setHeight(20), horizontal: setWidth(30)),
       child: InkWell(
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),

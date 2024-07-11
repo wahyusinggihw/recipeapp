@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/core/view_models/recipe/recipe_provider.dart';
 import 'package:recipe_app/ui/constant/constant.dart';
-import 'package:recipe_app/ui/router/route_list.dart';
 import 'package:recipe_app/ui/screens/recipes/recipe_search_screen.dart';
 import 'package:recipe_app/ui/widgets/recipe/recipe_grid.dart';
 
@@ -15,7 +14,7 @@ class RecipesScreen extends StatelessWidget {
       appBar: AppBar(
         // backgroundColor: Colors.amber,
         elevation: 0,
-        title: CircleAvatar(
+        title: const CircleAvatar(
           backgroundColor: Colors.orange,
           radius: 20,
         ),
@@ -41,12 +40,12 @@ class RecipeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         children: [
           RecipeSearch(),
           RecipeMenu(),
-          RecipeHistory(),
+          // RecipeHistory(),
         ],
       ),
     );
@@ -84,7 +83,7 @@ class RecipeSearch extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => RecipeSearchScreen(),
+                  builder: (context) => const RecipeSearchScreen(),
                 ),
               );
             },
@@ -95,11 +94,11 @@ class RecipeSearch extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Search your favorite food',
-                      prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                      prefixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
+                      suffixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list)),
                     ),
                   ),
                 ),
@@ -130,15 +129,15 @@ class RecipeMenu extends StatelessWidget {
             ),
           ),
           Consumer<RecipeProvider>(builder: (context, recipes, _) {
-            if (recipes.recipes.isEmpty) {
-              recipes.getRecipes();
-            }
+            // if (recipes.todayRecipes.isEmpty) {
+            //   recipes.loadTodayRecipes();
+            // }
 
             return SizedBox(
               height: setHeight(650),
               child: RecipeGrid(
                 isLoading: recipes.isLoading,
-                recipe: recipes.recipes,
+                recipe: recipes.todayRecipes,
               ),
             );
           }),
@@ -167,7 +166,7 @@ class RecipeHistory extends StatelessWidget {
           ),
           SizedBox(
             height: setHeight(325),
-            child: RecipeGrid(
+            child: const RecipeGrid(
               recipe: [],
               makeHistory: true,
             ),

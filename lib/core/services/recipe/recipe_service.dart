@@ -14,4 +14,9 @@ class RecipeService {
     final response = await api.get(api.endPoint.getAllRecipe);
     return MealResponse.fromJson(response);
   }
+
+  Future<MealResponse> getRecipe(String keyw) async {
+    final response = await api.get(api.endPoint.getRecipeByName, query: {'s': keyw});
+    return MealResponse.fromJson(response);
+  }
 }
