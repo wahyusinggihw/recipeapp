@@ -137,6 +137,7 @@ class RecipeMenu extends StatelessWidget {
             return SizedBox(
               height: setHeight(650),
               child: RecipeGrid(
+                isLoading: recipes.isLoading,
                 recipe: recipes.recipes,
               ),
             );

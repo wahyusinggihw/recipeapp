@@ -5,6 +5,10 @@ import 'package:recipe_app/core/services/recipe/recipe_service.dart';
 import 'package:recipe_app/injector.dart';
 
 class RecipeProvider extends ChangeNotifier {
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   List<Meal> _singleRandomRecipe = [];
 
   List<Meal> get singleRandomRecipe => _singleRandomRecipe;
@@ -32,6 +36,7 @@ class RecipeProvider extends ChangeNotifier {
   }
 
   Future<void> getRecipes() async {
+    _isLoading = true;
     try {
       final response = await recipeService.getRecipes();
       _recipes = response.meals!;
@@ -39,7 +44,10 @@ class RecipeProvider extends ChangeNotifier {
       debugPrint("Error: ${e.toString()}");
       debugPrint("Stacktrace: ${stacktrace.toString()}");
       _recipes = [];
+    } finally {
+      _isLoading = false;
     }
+    // _isLoading = false;
     notifyListeners();
   }
 }

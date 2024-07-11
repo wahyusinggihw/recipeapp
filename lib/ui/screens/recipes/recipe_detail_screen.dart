@@ -67,7 +67,7 @@ class _RecipeBodyDetailScreenState extends State<RecipeBodyDetailScreen> {
       minHeight: minHeight,
       parallaxEnabled: true,
       parallaxOffset: .5,
-      body: RecipeImage(imageUrl: widget.recipe.strMealThumb),
+      body: RecipeImage(imageUrl: widget.recipe.strMealThumb, heroTag: widget.recipe.strMeal),
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       onPanelSlide: (double pos) => setState(() {
         _fabHeight = pos * (_panelHeightOpen - _panelHeightClosed) + _initFabHeight;
@@ -98,16 +98,20 @@ class _RecipeBodyDetailScreenState extends State<RecipeBodyDetailScreen> {
 
 class RecipeImage extends StatelessWidget {
   final String imageUrl;
-  const RecipeImage({super.key, required this.imageUrl});
+  final String heroTag;
+  const RecipeImage({super.key, required this.imageUrl, required this.heroTag});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: const Alignment(0, -1.2),
       child: ClipRRect(
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
+        child: Hero(
+          tag: heroTag,
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
