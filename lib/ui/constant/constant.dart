@@ -3,6 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const String appName = 'Recipe App';
 
+int get year => DateTime.now().year;
+String get appLegalese => '© $year Recipe App. All rights reserved.';
+
+const String appDesc =
+    'Recipe app is a simple app that helps you to find and save your favorite recipes. \ndeveloped by wsw.dev. \ngithub.com/wahyusinggihw.';
+
 const Color primaryColor = Colors.orange;
 const Color secondaryColor = Color(0xFFFFFFC1);
 Color accentColor = Colors.orange[200]!;

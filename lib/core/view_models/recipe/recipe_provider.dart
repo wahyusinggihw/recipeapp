@@ -78,6 +78,9 @@ class RecipeProvider extends ChangeNotifier {
   }
 
   Future<void> loadTodayRecipes() async {
+    _isLoading = true;
+    notifyListeners();
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? storedDate = prefs.getString('todayRecipesDate');
     String todayDate = DateTime.now().toIso8601String().substring(0, 10); // YYYY-MM-DD
@@ -87,6 +90,7 @@ class RecipeProvider extends ChangeNotifier {
       List<String>? storedRecipes = prefs.getStringList('todayRecipes');
       if (storedRecipes != null) {
         _todayRecipes = storedRecipes.map((recipe) => Meal.fromJson(json.decode(recipe))).toList();
+        _isLoading = false;
         notifyListeners();
         return;
       }

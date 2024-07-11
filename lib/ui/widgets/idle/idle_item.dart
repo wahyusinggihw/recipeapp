@@ -5,7 +5,8 @@ import 'package:recipe_app/ui/constant/constant.dart';
 class IdleItem extends StatefulWidget {
   final String title;
   final bool isNoItem;
-  const IdleItem({super.key, required this.title, this.isNoItem = false});
+  final bool disableAnimation;
+  const IdleItem({super.key, required this.title, this.isNoItem = false, this.disableAnimation = false});
 
   @override
   State<IdleItem> createState() => _IdleItemState();
@@ -22,9 +23,20 @@ class _IdleItemState extends State<IdleItem> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
-    initialize();
+    if (!widget.disableAnimation) {
+      initialize();
+      return;
+    }
+    setState(() {
+      opacityLogo = 1;
+    });
   }
 
   @override
